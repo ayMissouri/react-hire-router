@@ -1,10 +1,15 @@
 import { useState } from "react"
+import { useNavigate, Link } from "react-router"
 
 function HireForm(props) {
   const [wage, setWage] = useState(0)
-
+  const navigate = useNavigate()
   function handleSubmit(event) {
     event.preventDefault()
+    const personAndWage = {...props.person, wage: wage}
+    const hired = [...props.hiredPeople, personAndWage]
+    props.setHiredPeople(hired)
+    navigate("/")
   }
 
   return (
